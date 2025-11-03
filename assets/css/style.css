@@ -1,6 +1,184 @@
+/* ======= RESET BÁSICO ======= */
 * {
-   padding: 0;
-   margin: 0;
-   text-decoration: none;
-   text-shadow: none; 
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+/* ======= ESTILO GERAL ======= */
+body {
+    background-color: #f5f5f5;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* ======= CABEÇALHO ======= */
+header {
+    background-color: #4a4af5;
+    padding: 15px 0;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1rem;
+    transition: 0.3s;
+}
+
+nav a:hover,
+nav a.active {
+    text-decoration: underline;
+}
+
+/* ======= CONTEÚDO PRINCIPAL ======= */
+main {
+    flex: 1;
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+/* ======= LAYOUT DUAS COLUNAS ======= */
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+/* ======= FORMULÁRIO (ESQUERDA) ======= */
+.form-section {
+    flex: 1;
+    min-width: 350px;
+    background-color: white;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.form-section h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+input, textarea, button {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    margin-bottom: 15px;
+}
+
+input:focus, textarea:focus {
+    border-color: #4a4af5;
+    outline: none;
+}
+
+button {
+    background-color: #4a4af5;
+    color: white;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background-color: #3333cc;
+}
+
+/* ======= LISTA DE TAREFAS (DIREITA) ======= */
+.task-list-section {
+    flex: 1;
+    min-width: 350px;
+    background-color: white;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.task-list-section h2 {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+#lista_tarefas {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.tarefa {
+    background-color: #f0f0ff;
+    border-left: 4px solid #4a4af5;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: 0.2s;
+}
+
+.tarefa:hover {
+    background-color: #e4e4ff;
+}
+
+/* ======= RODAPÉ ======= */
+footer {
+    background-color: #4a4af5;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    font-size: 0.9rem;
+}
+
+/* ======= RESPONSIVIDADE ======= */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .form-section, .task-list-section {
+        width: 100%;
+        max-width: 500px;
+    }
+
+    nav ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    h1 {
+        font-size: 1.6rem;
+    }
 }
