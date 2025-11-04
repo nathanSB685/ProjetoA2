@@ -4,34 +4,63 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de Tarefas</title>
-    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
 </head>
 <body>
     <header>
         <nav>
             <ul>
-                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html" class="active">Home</a></li>
                 <li><a href="contato.html">Contato</a></li>
             </ul>
         </nav>
     </header>
-    <main>
-        <h1>Lista de tarefas</h1>
-        <section>
-            <!--Section para adicionar a tarefa-->
-            <!--Aqui tem que ter inputs com nome da tarefa, tipo da tarefa, dia e horario-->
-            <!--Os inputs aqui tem que ter a tag required <input type="" id="" name="" placeholder="" required>-->
-            <!--Botão para adicionar a tarefa-->
-            <button onclick="criarTarefa()">Adicionar</button>
-        </section>
 
-        <section>
-            <!--Section para fazer a lista das tarefas e pesquisar por tag-->
-        </section>
+    <main>
+        <h1>Lista de Tarefas</h1>
+
+        <div class="container">
+            <!-- COLUNA ESQUERDA – FORMULÁRIO -->
+            <section class="form-section">
+                <h2>Adicionar Nova Tarefa</h2>
+
+                <label for="nome_tarefa">Nome da Tarefa:</label>
+                <input type="text" id="nome_tarefa" name="Nome" placeholder="Digite o nome da Tarefa..." required>
+
+                <label for="tipo_tarefa">Tipo da Tarefa:</label>
+                <select class="form-control" id="tipo_tarefa">
+                    <option value="">Tipo</option>
+                    <option value="1">Alimentação</option>
+                    <option value="2">Estudos</option>
+                    <option value="3">Lazer</option>
+                    <option value="4">Saúde</option>
+                    <option value="5">Trabalho</option>
+                </select>
+
+                <label for="dia_tarefa">Data limite:</label>
+                <input type="date" id="data_tarefa" name="Dia" required>
+
+                <label for="horario_tarefa">Horário limite:</label>
+                <input type="time" id="horario_tarefa" name="horario" required>
+
+                <button onclick="gerarTarefa()">Adicionar</button>
+            </section>
+
+            <!-- COLUNA DIREITA – LISTA DE TAREFAS -->
+            <section class="task-list-section">
+                <h2>Suas Tarefas</h2>
+                <ul id="lista_tarefas">
+                    <!-- Tarefas aparecerão aqui via JavaScript -->
+                </ul>
+            </section>
+        </div>
     </main>
 
-    <script src="assets/js/script.js"></script>
+    <footer>
+        Projeto A2 da Faculdade — Lista de Tarefas
+    </footer>
 
-    <footer>Projeto A2 da Faculdade</footer>
+    <script src="assets/js/script.js"></script>
 </body>
 </html>
