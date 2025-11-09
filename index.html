@@ -21,12 +21,11 @@
         <h1>Lista de Tarefas</h1>
 
         <div class="container">
-            <!-- COLUNA ESQUERDA – FORMULÁRIO -->
             <section class="form-section">
-                <h2>Adicionar Nova Tarefa</h2>
-
+                <h2>Adicionar / Pesquisar</h2>
+                
                 <label for="nome_tarefa">Nome da Tarefa:</label>
-                <input type="text" id="nome_tarefa" name="Nome" placeholder="Digite o nome da Tarefa..." required>
+                <input type="text" id="nome_tarefa" name="Nome" placeholder="Digite o nome da Tarefa...">
 
                 <label for="tipo_tarefa">Tipo da Tarefa:</label>
                 <select class="form-control" id="tipo_tarefa">
@@ -38,21 +37,25 @@
                     <option value="5">Trabalho</option>
                 </select>
 
-                <label for="dia_tarefa">Data limite:</label>
-                <input type="date" id="data_tarefa" name="Dia" required>
+                <label for="data_tarefa">Data limite:</label>
+                <input type="date" id="data_tarefa" name="Dia">
 
                 <label for="horario_tarefa">Horário limite:</label>
-                <input type="time" id="horario_tarefa" name="horario" required>
+                <input type="time" id="horario_tarefa" name="horario">
 
-                <button onclick="gerarTarefa()">Adicionar</button>
+                <div class="form-buttons">
+                    <button onclick="gerarTarefa()">Adicionar</button>
+                    <button onclick="pesquisarTarefa()" id="btn_pesquisar">Pesquisar</button>
+                </div>
             </section>
 
-            <!-- COLUNA DIREITA – LISTA DE TAREFAS -->
             <section class="task-list-section">
                 <h2>Suas Tarefas</h2>
+                
+                <button onclick="carregaListaTarefas()" id="btn_limpar_filtro">Mostrar Todas</button>
+                
                 <ul id="lista_tarefas">
-                    <!-- Tarefas aparecerão aqui via JavaScript -->
-                </ul>
+                    </ul>
             </section>
         </div>
     </main>

@@ -91,15 +91,22 @@ class Bd {
         tarefasFiltradas = this.recuperarTodasTarefas();
 
         if(tarefa.nome != ''){
-            tarefasFiltradas = tarefasFiltradas.filter(t => t.nome == tarefa.nome);
+            console.log("filtro de nome");
+            tarefasFiltradas = tarefasFiltradas.filter(t => 
+                t.nome.toLowerCase().includes(tarefa.nome.toLowerCase())
+            );
         }
+
         if(tarefa.data != ''){
+            console.log("filtro de data");
             tarefasFiltradas = tarefasFiltradas.filter(t => t.data == tarefa.data);
         }
         if(tarefa.tipo != ''){
+            console.log("filtro de tipo");
             tarefasFiltradas = tarefasFiltradas.filter(t => t.tipo == tarefa.tipo);
         }
         if(tarefa.horario != ''){
+            console.log("filtro de horario");
             tarefasFiltradas = tarefasFiltradas.filter(t => t.horario == tarefa.horario);
         }
         return tarefasFiltradas;
@@ -181,7 +188,6 @@ function carregaListaTarefas(tarefas, filtro = false) {
             <p>Concluir até: ${dataFormatada} às ${t.horario}</p>
         `;
 
-        // Botão Concluir
         let btnComplete = document.createElement('button');
         btnComplete.className = 'btn-complete';
         if (t.concluida) {
@@ -193,20 +199,22 @@ function carregaListaTarefas(tarefas, filtro = false) {
         }
         btnComplete.onclick = function() {
             bd.toggleConcluida(t.id);
-            // Atualiza a lista ao clicar
+
             carregaListaTarefas(); 
         }
 
-        // Botão Deletar
         let btnDelete = document.createElement('button');
         btnDelete.className = 'btn-delete'; 
         btnDelete.innerHTML = '<i class="fas fa-times"></i>';
         btnDelete.id = `id_tarefa_${t.id}`; 
         btnDelete.onclick = function() {
-            let id = this.id.replace('id_tarefa_', '');
-            bd.remover(id);
-            // Atualiza a lista ao clicar
-            carregaListaTarefas(); 
+            if (confirm("Tem certeza que deseja excluir esta tarefa?")) {
+                let id = this.id.replace('id_tarefa_', '');
+
+                bd.remover(id);
+
+                carregaListaTarefas();
+            }
         }
         
         itemLista.appendChild(btnComplete);
@@ -225,6 +233,5 @@ function carregaListaTarefas(tarefas, filtro = false) {
     let tarefa = new Tarefa(nome, tipo, data, horario);
     let tarefas = bd.pesquisar(tarefa);
      
-    // Corrigido
     carregaListaTarefas(tarefas, true);
  }

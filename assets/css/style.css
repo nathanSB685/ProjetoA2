@@ -7,7 +7,9 @@
     --cor-texto: #212529;
     --cor-texto-claro: #495057;
     --cor-delete: #dc3545;
-    --cor-delete-hover: #c82333;
+    --cor-sucesso: #28a745;
+    --cor-aviso: #ffc107;
+    --cor-info: #17a2b8;
 }
 
 * {
@@ -24,7 +26,7 @@ body {
 }
 
 main {
-    max-width: 1200px;
+    max-width: 1600px;
     margin: 20px auto;
     padding: 20px;
 }
@@ -80,6 +82,13 @@ header nav ul li a:hover {
     flex-wrap: wrap; 
 }
 
+.container .form-section {
+    width: 100%;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+
 .form-section,
 .task-list-section {
     padding: 25px;
@@ -89,14 +98,14 @@ header nav ul li a:hover {
     border: 1px solid var(--cor-borda);
 }
 
-.form-section {
+.container .form-section:not(:only-child) {
     flex: 1;
     min-width: 300px;
+    max-width: none;
 }
-
 .task-list-section {
     flex: 2;
-    min-width: 300px;
+    min-width: 500px;
 }
 
 .form-section label {
@@ -110,62 +119,125 @@ header nav ul li a:hover {
 .form-section input[type="text"],
 .form-section input[type="date"],
 .form-section input[type="time"],
-.form-section select {
+.form-section input[type="email"],
+.form-section select,
+.form-section textarea {
     width: 100%;
     padding: 12px;
     font-size: 1rem;
+    font-family: inherit;
     border: 1px solid var(--cor-borda);
     border-radius: 5px;
     background-color: #fdfdfd;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.form-section button {
+.form-section textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.form-section input:focus,
+.form-section select:focus,
+.form-section textarea:focus {
+    outline: none;
+    border-color: var(--cor-primaria);
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+}
+
+.form-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 25px;
+}
+
+.form-buttons button {
     width: 100%;
     padding: 12px;
     font-size: 1.1rem;
     font-weight: bold;
     color: white;
-    background-color: var(--cor-primaria);
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    margin-top: 25px;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+}
+
+.form-buttons button:active {
+    transform: scale(0.98);
+}
+
+.form-buttons button:first-child {
+    background-color: var(--cor-primaria);
+}
+.form-buttons button:first-child:hover {
+    background-color: #0069d9;
+}
+
+#btn_pesquisar {
+    background-color: var(--cor-secundaria);
+}
+#btn_pesquisar:hover {
+    background-color: #5a6268;
+}
+
+
+#btn_limpar_filtro {
+    display: inline-block;
+    padding: 8px 15px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    background-color: var(--cor-info);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 20px;
     transition: background-color 0.3s ease;
 }
 
-.form-section button:hover {
-    background-color: #0056b3;
+#btn_limpar_filtro:hover {
+    background-color: #138496;
 }
 
 #lista_tarefas {
     list-style: none;
     padding: 0;
-    margin-top: 20px;
 }
 
 #lista_tarefas li {
     background-color: #fdfdfd;
-    border: 1px solid var(--cor-borda);
+    border-left: 5px solid var(--cor-secundaria);
     border-radius: 8px;
     padding: 20px;
     margin-bottom: 15px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.05);
     position: relative; 
-    
     padding-right: 100px; 
-    
-    transition: opacity 0.4s ease, background-color 0.4s ease;
+    transition: all 0.4s ease;
+}
+
+#lista_tarefas .tipo-tarefa {
+    display: inline-block;
+    background-color: var(--cor-secundaria);
+    color: white;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    margin-bottom: 10px;
 }
 
 #lista_tarefas li.concluida {
-    opacity: 0.6;
+    opacity: 0.7;
     background-color: #f1f1f1;
+    border-left-color: var(--cor-sucesso);
 }
 
 #lista_tarefas li.concluida h3,
 #lista_tarefas li.concluida p {
     text-decoration: line-through;
-    color: var(--cor-secundaria);
+    color: var(--cor-texto-claro);
 }
 
 .btn-delete {
@@ -176,7 +248,7 @@ header nav ul li a:hover {
     background: none;
     border: none;
     cursor: pointer;
-    color: var(--cor-secundaria);
+    color: var(--cor-texto-claro);
     font-size: 1.5rem; 
     padding: 5px;
     transition: color 0.3s ease;
@@ -193,17 +265,17 @@ header nav ul li a:hover {
     background: none;
     border: none;
     cursor: pointer;
-    color: var(--cor-secundaria);
+    color: var(--cor-texto-claro);
     font-size: 1.3rem;
     padding: 5px;
     transition: color 0.3s ease;
 }
 .btn-complete:hover {
-    color: #28a745;
+    color: var(--cor-sucesso);
 }
 
 .concluida .btn-complete:hover {
-    color: #ffc107;
+    color: var(--cor-aviso);
 }
 
 footer {
@@ -219,8 +291,10 @@ footer {
     .container {
         flex-direction: column;
     }
-
     h1 {
         font-size: 2rem;
+    }
+    .form-buttons {
+        flex-direction: column;
     }
 }
